@@ -1,0 +1,50 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block title %}
+  {{username}}'s Profile
+{% endblock %}
+
+{% block body %}
+<h1>{{username}}'s Info'</h1>
+<p>{{followers}} Followers</p>
+<p>Following {{following}} users.</p>
+{% if request.user.username != username %}
+<form class="" action="{% url 'profile' username %}" method="post">
+  {% csrf_token %}
+  {% if button == "Follow" %}
+    <button type="submit" name="button" value="Follow">Follow</button>
+  {% else %}
+    <button type="submit" name="button" value="Unfollow">UnFollow</button>
+  {% endif %}
+</form>
+{% else %}
+{% endif %}
+<br>
+<h1>{{username}}'s Posts</h1>
+<br>
+{% for post in posts %}
+  <div class="post" id="post" style="margin-top: 10px; border-style: solid; background-color:lightblue;">
+    <h3><strong>{{post.user}}</strong> says:</h3>
+    <p id="post{{post.id}}">{{post.body}}</p>
+    <button id="likebutton{{post.id}}" style="background-color: white;" onclick="like('{{post.id}}')">Like</button>
+    <p id="likecount{{post.id}}"><strong>{{post.likecount}} likes</strong></p>
+    <p>Posted on <strong>{{post.timestamp}}</strong></p>
+    {% if post.user.id == user.id %}
+      <button id="editopener" class="btn btn-secondary" onclick="edit({{post.id}})">Edit</button>
+    {% endif %}
+    <br>
+    <textarea rows="4" cols="8" id="editbody{{post.id}}" style="display: none;">{{post.body}}</textarea>
+    <button id="editbutton{{post.id}}" style="display: none;" class="btn btn-danger">Save Edit</button>
+  </div>
+{% endfor %}
+<div class="nextpage">
+  {% if posts.has_next %}
+    <a href="?page={{ posts.next_page_number }}">Next Page</a>
+{% endif %}
+
+{% if posts.has_previous %}
+    <a href="?page={{ posts.previous_page_number }}">Previous Page</a>
+{% endif %}
+</div>
+{% endblock %}

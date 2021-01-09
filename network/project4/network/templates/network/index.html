@@ -1,0 +1,24 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block title %}
+  Create A Post
+{% endblock %}
+
+{% block body %}
+    <br>
+    {% if user.is_authenticated %}
+    <div class="createpost">
+      <h4>Create a Post</h4>
+      <form id="createpost" action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        <textarea id="body" class="form-control" name="body" rows="4" cols="4" placeholder="Write Here"></textarea>
+        <br>
+        <input type="submit" class="btn btn-primary" name="postbutton" value="Post">
+      </form>
+    </div>
+    {% else %}
+    <h1>Log in to Post</h1>
+    {% endif %}
+
+{% endblock %}
