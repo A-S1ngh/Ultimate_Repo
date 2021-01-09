@@ -1,0 +1,26 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+  Active Listings
+{% endblock %}
+
+{% block body %}
+  {% if noitems %}
+    <h1>No Active Listings</h1>
+  {% else %}
+    {% for item in allitems %}
+    <div class="card card {display:inline-block;}" style="width: 18rem;">
+      <img class="card-img-top" src="{{item.image}}" alt="No Image Available">
+      <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text">
+          Description: {{item.description}}
+          <br>
+          Current Bid: {{item.startingbid}}
+        </p>
+        <a href="{% url 'viewlisting' item.id %}" class="btn btn-primary">See Listing</a>
+      </div>
+    </div>
+    {% endfor %}
+  {% endif%}
+{% endblock %}

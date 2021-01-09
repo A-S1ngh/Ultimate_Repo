@@ -1,0 +1,23 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+  {{categ}}
+{% endblock %}
+
+{% block body %}
+  <h1>{{categ}}</h1>
+  {% for item in allitems %}
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{item.image}}" alt="No Image Available">
+    <div class="card-body">
+      <h5 class="card-title">{{item.name}}</h5>
+      <p class="card-text">
+        Description: {{item.description}}
+        <br>
+        Current Bid: {{item.startingbid}}
+      </p>
+      <a href="{% url 'viewlisting' item.id %}" class="btn btn-primary">See Listing</a>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}

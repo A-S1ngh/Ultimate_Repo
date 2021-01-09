@@ -1,0 +1,10 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+  Listing Closed
+{% endblock %}
+
+{% block body %}
+  <h1>Congratulations!</h1>
+  <h3>Your listing, <strong>{{listing.name}}</strong> was sold to <strong>{{closedbid.winner}}</strong> for <strong>{{closedbid.winprice}}</strong> </h3>
+{% endblock %}
