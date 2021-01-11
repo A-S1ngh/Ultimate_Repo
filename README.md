@@ -13,7 +13,7 @@ A social media page similar to Twitter that allows users to share their thoughts
 ## Portfolio Website
 This portfolio website that gives viewers a convenient way to see my information and work.
 
-### [See Code](https://github.com/A-S1ngh/A-S1ngh.github.io)
+### [See Website](https://a-s1ngh.github.io) | [See Code](https://github.com/A-S1ngh/A-S1ngh.github.io)
 
 ***
 
